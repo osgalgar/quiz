@@ -1,6 +1,6 @@
 var models = require('../models/models.js');
 
-// AutoLoad: Factoriza el código si ruta inclute :quizId
+// AutoLoad: Factoriza el código si ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
   models.Quiz.find(quizId).then(
     function(quiz) {
@@ -16,11 +16,19 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-  models.Quiz.findAll().then(
+  var search = "%";
+
+  if (req.query.search != undefined) {
+    search = "%" + req.query.search + "%";
+    search = search.trim().replace(/\s/g, "%");
+  }
+
+  models.Quiz.findAll({where: ["upper(pregunta) like ?", search.toUpperCase()], order: 'pregunta ASC'})
+  .then(
     function(quizes) {
-      res.render('quizes/index', { quizes: quizes});
+      res.render('quizes/index', { quizes: quizes, errors: []});
     }
-  ).catch(function(error) {next(error);});
+  ).catch(function(error){next(error);});
 };
 
 // GET /quizes/:id

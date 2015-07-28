@@ -4,11 +4,12 @@
 <input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/> <p>
 <label for="tema" class="rem">Temática:</label>
 <select id="tema" name="quiz[tema]" value="<%= quiz.tema %>">
-  <option value="otro" selected>Otro</option>
-  <option value="humanidades">Humanidades</option>
-  <option value="ocio">Ocio</option>
-  <option value="ciencia">Ciencia</option>
-  <option value="tecnologia">Tecnología</option>
+  <option value="otro"        <% if ('otro'        == quiz.tema) {%>selected<%} %>>Otro</option>
+  <option value="humanidades" <% if ('humanidades' == quiz.tema) {%>selected<%} %>>Humanidades</option>
+  <option value="ocio"        <% if ('ocio'        == quiz.tema) {%>selected<%} %>>Ocio</option>
+  <option value="ciencia"     <% if ('ciencia'     == quiz.tema) {%>selected<%} %>>Ciencia</option>
+  <option value="tecnologia"  <% if ('tecnologia'  == quiz.tema) {%>selected<%} %>>Tecnología</option>
+  <option value="deportes"    <% if ('deportes'    == quiz.tema) {%>selected<%} %>>Deportes</option>
 </select>
 <br>
 <a href="/quizes"><button type="button">Cancelar</button></a>

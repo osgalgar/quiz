@@ -40,6 +40,26 @@ app.use(function(req, res, next) {
   next();
 });
 
+// MW Auto-Logout
+app.use(function(req, res, next) {
+  if (req.session.user) {
+    var caducidad = 120000;
+    var tiempo = (new Date()).getTime();
+    if (!req.session.timelogout) {
+      req.session.timelogout = tiempo;
+    } else {
+      if (tiempo - req.session.timelogout > caducidad) {
+        //res.redirect('/logout');
+        delete req.session.user;
+        delete req.session.timelogout;
+      } else {
+        req.session.timelogout = tiempo;
+      }
+    }
+  }
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

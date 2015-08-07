@@ -1,0 +1,11 @@
+<h2> Página de Estadísticas </h2>
+
+<ul>
+  <li>Preguntas: <%= statistics.quizes %></li>
+  <li>Comentarios Totales: <%= statistics.comments %></li>
+  <li>Comentarios No Publicados: <%= statistics.commentsUnpublished %>
+    (<%= statistics.comments?(statistics.commentsUnpublished * 100 / statistics.comments).toFixed(2)+'%':'100%' %>)</li>
+  <li>Media de Comentarios por Pregunta: <%= statistics.quizes?(statistics.comments / statistics.quizes).toFixed(2):0 %></li>
+  <li>Preguntas sin Comentarios: <%= statistics.quizes - statistics.commentedQuizes %></li>
+  <li>Preguntas con Comentarios: <%= statistics.commentedQuizes %></li>
+</ul>

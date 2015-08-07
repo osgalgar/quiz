@@ -23,9 +23,14 @@
         <h2>Quiz: El Juego de las Preguntas</h2>
       </header>
       <nav class="main" id="n1" role="navigation">
-        <span><a href="/">Inicio</a></span>
-        <span><a href="/quizes">Preguntas</a></span>
-        <span><a href="/author">Créditos</a></span>
+        <tr>
+          <td><span><a href="/">Inicio</a></span></td>
+          <td><span><a href="/quizes">Preguntas</a></span></td>
+        </tr>
+        <tr>
+          <td><span><a href="/statistics">Estadísticas</a></span></td>
+          <td><span><a href="/author">Créditos</a></span></td>
+        </tr>
       </nav>
       <section class="main" id="s1">
         <% if (errors.length) { %>
